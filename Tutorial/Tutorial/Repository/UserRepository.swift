@@ -14,7 +14,8 @@ class UserRepository {
     static let shared = UserRepository()
     
     /// Get User Request'i ni dinleyebilmek icin bir observe nesnesi doner.
-    func requestGetUser() -> AnyPublisher<DataResponse<[GetUserResponse], NetworkError>, Never> {
+    /// Eski kullanimi
+    public func requestGetUser() -> AnyPublisher<DataResponse<[GetUserResponse], NetworkError>, Never> {
         return AlamofireService.shared.requestGetUsers()
             .validate()
             .publishDecodable(type: [GetUserResponse].self)
@@ -25,6 +26,20 @@ class UserRepository {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+    
+    /// Get User Request'i ni dinleyebilmek icin bir observe nesnesi doner.
+    /// Yeni kullanimi
+    public func requestGetUserAlternative() -> AnyPublisher<WSResult<[GetUserResponse]>, Never> {
+        Deferred {
+            Future { promise in
+                AlamofireService
+                    .shared
+                    .requestGetUsersAlternative { result in
+                        promise(.success(result))
+                    }
+            }
+        }.eraseToAnyPublisher()
     }
     
 }

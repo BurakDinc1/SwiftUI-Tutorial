@@ -20,12 +20,6 @@ struct ContentView: View {
                     ProgressView("Yükleniyor...")
                 } else {
                     VStack(alignment: .center, spacing: 10) {
-//                        // MARK: - Title
-//                        Text("Kullanıcılar")
-//                            .textCase(.uppercase)
-//                            .font(Font.system(.largeTitle))
-//                            .foregroundColor(Color.black)
-//                            .padding()
                         // MARK: - ScrollView
                         ScrollView(.vertical, showsIndicators: true) {
                             VStack(alignment: .center, spacing: 10) {
@@ -37,24 +31,7 @@ struct ContentView: View {
                                             UserDetailView(user: user)
                                         } label: {
                                             // MARK: - User List Item
-                                            VStack(alignment: .center, spacing: 10) {
-                                                HStack(alignment: .center, spacing: 10) {
-                                                    Text("İsim:")
-                                                        .foregroundColor(Color.blue)
-                                                    Text(userName)
-                                                        .foregroundColor(Color.black)
-                                                    Spacer()
-                                                }
-                                                HStack(alignment: .center, spacing: 10) {
-                                                    Text("Şehir:")
-                                                        .foregroundColor(Color.blue)
-                                                    Text(userAddress)
-                                                        .foregroundColor(Color.black)
-                                                    Spacer()
-                                                }
-                                                Divider()
-                                            }
-                                            .padding(.horizontal)
+                                            self.userCell(userName: userName, userAddress: userAddress)
                                         }
                                     } else {
                                         // MARK: - User Not Found
@@ -68,10 +45,33 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                self.contentViewModel.getUsers()
+                self.contentViewModel.getUsersAlternative()
+                // veya eski kullanim self.contentViewModel.getUsers()
             }
             .navigationTitle(Text("Kullanıcılar"))
         }
+    }
+    
+    // MARK: User Cell
+    func userCell(userName: String, userAddress: String) -> some View {
+        return VStack(alignment: .center, spacing: 10) {
+            HStack(alignment: .center, spacing: 10) {
+                Text("İsim:")
+                    .foregroundColor(Color.blue)
+                Text(userName)
+                    .foregroundColor(Color.black)
+                Spacer()
+            }
+            HStack(alignment: .center, spacing: 10) {
+                Text("Şehir:")
+                    .foregroundColor(Color.blue)
+                Text(userAddress)
+                    .foregroundColor(Color.black)
+                Spacer()
+            }
+            Divider()
+        }
+        .padding(.horizontal)
     }
 }
 

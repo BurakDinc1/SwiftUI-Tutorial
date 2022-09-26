@@ -17,6 +17,9 @@
 		CE3441A8283CF760006C733D /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3441A7283CF760006C733D /* GetUserResponse.swift */; };
 		CE3441AB283D00FF006C733D /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3441AA283D00FF006C733D /* ContentViewModel.swift */; };
 		CE3441AE283D0C75006C733D /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3441AD283D0C75006C733D /* UserDetailView.swift */; };
+		CE456F3828E1B86A005DA7C9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE456F3728E1B86A005DA7C9 /* Extension.swift */; };
+		CE456F3A28E1B8B9005DA7C9 /* WSResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE456F3928E1B8B9005DA7C9 /* WSResult.swift */; };
+		CE456F3C28E1B8DE005DA7C9 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE456F3B28E1B8DE005DA7C9 /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		CE3441A7283CF760006C733D /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		CE3441AA283D00FF006C733D /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		CE3441AD283D0C75006C733D /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		CE456F3728E1B86A005DA7C9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		CE456F3928E1B8B9005DA7C9 /* WSResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSResult.swift; sourceTree = "<group>"; };
+		CE456F3B28E1B8DE005DA7C9 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		E0CA5567FC95882D4A1F2A95 /* Pods-Tutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tutorial.debug.xcconfig"; path = "Target Support Files/Pods-Tutorial/Pods-Tutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		EDD67CB631AE5D569CD31753 /* Pods_Tutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +97,7 @@
 				CE3441A6283CF744006C733D /* Model */,
 				CE3441A1283CF44D006C733D /* Repository */,
 				CE3441AF283D118F006C733D /* Resources */,
+				CE456F3628E1B857005DA7C9 /* Helper */,
 				CE344198283CF16B006C733D /* Preview Content */,
 			);
 			path = Tutorial;
@@ -117,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				CE3441A7283CF760006C733D /* GetUserResponse.swift */,
+				CE456F3928E1B8B9005DA7C9 /* WSResult.swift */,
+				CE456F3B28E1B8DE005DA7C9 /* ErrorResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +153,14 @@
 				CE344196283CF16B006C733D /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE456F3628E1B857005DA7C9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CE456F3728E1B86A005DA7C9 /* Extension.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,13 +277,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE456F3A28E1B8B9005DA7C9 /* WSResult.swift in Sources */,
 				CE344195283CF16A006C733D /* ContentView.swift in Sources */,
 				CE3441A3283CF485006C733D /* AlamofireService.swift in Sources */,
 				CE3441AB283D00FF006C733D /* ContentViewModel.swift in Sources */,
 				CE3441A5283CF6E5006C733D /* UserRepository.swift in Sources */,
+				CE456F3C28E1B8DE005DA7C9 /* ErrorResponse.swift in Sources */,
 				CE3441AE283D0C75006C733D /* UserDetailView.swift in Sources */,
 				CE344193283CF16A006C733D /* TutorialApp.swift in Sources */,
 				CE3441A8283CF760006C733D /* GetUserResponse.swift in Sources */,
+				CE456F3828E1B86A005DA7C9 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,7 @@ struct UserDetailView: View {
                let userCity = self.user.address?.city,
                let userStreet = self.user.address?.city,
                let userZipCode = self.user.address?.zipcode {
+                // MARK: - ID
                 HStack(alignment: .center, spacing: 10) {
                     Text("ID:")
                         .foregroundColor(Color.blue)
@@ -26,6 +27,7 @@ struct UserDetailView: View {
                         .foregroundColor(Color.black)
                     Spacer()
                 }
+                // MARK: - Isim
                 HStack(alignment: .center, spacing: 10) {
                     Text("İsim:")
                         .foregroundColor(Color.blue)
@@ -33,6 +35,7 @@ struct UserDetailView: View {
                         .foregroundColor(Color.black)
                     Spacer()
                 }
+                // MARK: - Email
                 HStack(alignment: .center, spacing: 10) {
                     Text("Email:")
                         .foregroundColor(Color.blue)
@@ -40,6 +43,7 @@ struct UserDetailView: View {
                         .foregroundColor(Color.black)
                     Spacer()
                 }
+                // MARK: - Address
                 HStack(alignment: .center, spacing: 10) {
                     Text("Address:")
                         .foregroundColor(Color.blue)

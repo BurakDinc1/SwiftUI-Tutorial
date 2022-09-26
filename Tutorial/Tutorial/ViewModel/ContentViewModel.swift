@@ -11,13 +11,14 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     
-    var cancellable = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     
     @Published var userList: [GetUserResponse] = []
     @Published var isLoad: Bool = false
     
     /// Repository' den donen observe nesnesinin icinden kullanicilari ceker ve set eder.
-    func getUsers() {
+    /// Eski hali
+    public func getUsers() {
         self.isLoad = true
         UserRepository
             .shared
@@ -32,5 +33,31 @@ class ContentViewModel: ObservableObject {
                 }
                 self.isLoad = false
             }.store(in: &self.cancellable)
+    }
+    
+    /// Repository' den donen observe nesnesinin icinden kullanicilari ceker ve set eder.
+    /// Yeni kullanimi.
+    public func getUsersAlternative() {
+        self.isLoad = true
+        UserRepository
+            .shared
+            .requestGetUserAlternative()
+            .sink { [unowned self] (result) in
+                switch result {
+                case .success(let response):
+                    self.userList = response
+                    self.isLoad = false
+                    break
+                case .failure(let errorResponse):
+                    print("Get User Response Error: \(String(describing: errorResponse.message))")
+                    self.isLoad = false
+                    break
+                }
+            }.store(in: &self.cancellable)
+    }
+    
+    // View Modelimiz deinit oldugunda dinleyicilerimizi durduracak.
+    deinit {
+        self.cancellable.removeAll()
     }
 }

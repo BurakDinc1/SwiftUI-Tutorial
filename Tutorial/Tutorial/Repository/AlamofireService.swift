@@ -10,7 +10,7 @@ import Alamofire
 
 struct AlamofireService {
     
-    static let shared = AlamofireService()
+    public static let shared = AlamofireService()
     
     // Default Request
     /*
@@ -35,24 +35,39 @@ struct AlamofireService {
     /*
      Bu method özelinde eğer projeniz kapsamlı bir proje ise bir URLPath sınıfı oluşturup
      bu sınıf içerisinde endpointlerinizi tanımlayabilir ve bu methoda parametre olarak
-     gönderebilirsiniz.
+     gönderebilirsiniz. Bunun temel sebebi proje icerisinde urllerinizi bir standarda
+     oturtmak.
      */
-    func getURLComponent() -> URLComponents {
+    func getURLComponent() -> String {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https" // -> URL şeması
         urlComponents.host = "jsonplaceholder.typicode.com" // -> Base URL' imiz
         urlComponents.path = "/users" // -> Endpointimiz
+//        urlComponents.queryItems = [URLQueryItem(name: "page", value: "1")] // -> Servislerinize query parametresi ekleyebilirsiniz.
         print("AlamofireService--> \(urlComponents.string!) adresine istek atılıyor...")
-        return urlComponents
+        return urlComponents.string!
     }
     
     // MARK: - Methods
     
-    /// Kullanıcı verilerini çekmek için atacağımız istek.
-    func requestGetUsers() -> DataRequest {
-        let request = self.getDefaultRequest(url: self.getURLComponent().string!,
+    /// Kullanici verilerini cekmek icin atacagimiz istek.
+    /// Eski kullanimi
+    public func requestGetUsers() -> DataRequest {
+        let request = self.getDefaultRequest(url: self.getURLComponent(),
                                              method: .get)
         return AF.request(request)
+    }
+    
+    /// Kullanici verilerini cekmek icin alternatif istek turu
+    /// Extension uzerinden takip edebilirsin.
+    /// Hata ayiklamalarini kendi servislerinize gore
+    /// duzenleyebilirsiniz.
+    public func requestGetUsersAlternative(completion: @escaping (WSResult<[GetUserResponse]>) -> Void) {
+        AF.request(self.getURLComponent(),
+                   method: .get)
+        .fetchServiceWithErrorHandling { result in
+            completion(result)
+        }
     }
     
 }
